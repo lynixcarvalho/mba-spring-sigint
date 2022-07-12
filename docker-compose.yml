@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  mysql-mba-fiap:
+    image: mysql:8.0
+    command:
+      - mysqld
+      - --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'fiap-mba'
+      MYSQL_DATABASE: 'bancofiap'
+    ports: 
+      - '3306:3306'
+    volumes:
+      - $PWD/mysql:/var/lib/mysql
+    networks:
+      - mysql-compose-network
+
+  myadmin:
+    image: phpmyadmin:5.1.1
+    environment:
+      PMA_HOST: mysql-mba-fiap
+    ports:
+      - '8880:80'
+    networks:
+      - mysql-compose-network
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - mysql-compose-network
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: fiap-mba
+    networks:
+      - mysql-compose-network
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: fiap-mba
+      ME_CONFIG_MONGODB_URL: mongodb://root:fiap-mba@mongo:27017/
+    networks:
+      - mysql-compose-network
+
+networks:
+  mysql-compose-network:
+    driver: bridge
+
