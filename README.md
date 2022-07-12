@@ -46,4 +46,4 @@ $ cd mba-spring-final-project
 
 ## Origem 
 Projeto realizado como requisito para conclusão da disciplina Spring Framework do MBA Full Stack Development - FIAP 2022
-Prof. Fabio Tadashi (https://github.com/)
+Prof. Fabio Tadashi (https://github.com/fabiotadashi)
