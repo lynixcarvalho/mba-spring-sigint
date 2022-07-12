@@ -12,7 +12,7 @@ SiGInt é um sistema para gerenciamento e integração...
 
 ## 🛠️ Tecnologias utilizadas
 
-- <Banco de dados a definir>
+- \<Banco de dados a definir\>
 - Docker
 - Git
 - Gradle
@@ -23,8 +23,8 @@ SiGInt é um sistema para gerenciamento e integração...
 ## ⚙️ Como abrir e rodar o projeto
 1. Clonar projeto do GitHub:
 ~~~bash
-git clone https://github.com/lynixcarvalho/mba-spring-final-project.git
-cd mba-spring-final-project
+$ git clone https://github.com/lynixcarvalho/mba-spring-final-project.git
+$ cd mba-spring-final-project
 ~~~
 2. Abrir o projeto na sua IDE de preferência (Eclipse, IntelliJ, Vscode...)
 3. Com o o projeto aberto execute o run no arquivo src/main/java/br/com/fiap/sigint/SigintApplication.java
