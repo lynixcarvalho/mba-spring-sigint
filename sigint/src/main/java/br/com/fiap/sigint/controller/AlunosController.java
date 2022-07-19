@@ -9,58 +9,53 @@ import br.com.fiap.sigint.dto.AlunosCreateUpdateDTO;
 import br.com.fiap.sigint.dto.AlunosDTO;
 import br.com.fiap.sigint.service.AlunosService;
 
-
 @RestController
 @RequestMapping("alunos")
 public class AlunosController {
-    
-    private AlunosService AlunosService;
 
-    public AlunosController(AlunosService AlunosService) {
-        this.AlunosService = AlunosService;
+    private AlunosService alunosService;
+
+    public AlunosController(AlunosService alunosService) {
+        this.alunosService = alunosService;
     }
 
     @GetMapping
-    public List<AlunosDTO> listAlunoss(
-        @RequestParam(required = false) String name
-        ) {
-            return AlunosService.listAll(name);
+    public List<AlunosDTO> listAlunos(
+            @RequestParam(required = false) String name) {
+        return alunosService.listAll(name);
     }
 
     @GetMapping("{id}")
     public AlunosDTO getById(@PathVariable int id) {
-        return AlunosService.findById(id);
+        return alunosService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public AlunosDTO insert(
-        @RequestBody AlunosCreateUpdateDTO createUpdateAlunosDTO
-        ) {
-            return AlunosService.create(createUpdateAlunosDTO);
+            @RequestBody AlunosCreateUpdateDTO createUpdateAlunosDTO) {
+        return alunosService.create(createUpdateAlunosDTO);
     }
 
     @PutMapping("{id}")
     public AlunosDTO update(
-        @RequestBody AlunosCreateUpdateDTO createUpdateAlunosDTO,
-        @PathVariable int id
-        ) {
-            return AlunosService.update(id, createUpdateAlunosDTO);
+            @RequestBody AlunosCreateUpdateDTO createUpdateAlunosDTO,
+            @PathVariable int id) {
+        return alunosService.update(id, createUpdateAlunosDTO);
     }
 
     // @PatchMapping("{id}")
     // public AlunosDTO updateUsdValue(
-    //     @PathVariable int id,
-    //     @RequestBody AlunosUsdValueDTO AlunosUsdValueDTO
-    //     ) {
-    //         return AlunosService.updatePrice(id, AlunosUsdValueDTO);
+    // @PathVariable int id,
+    // @RequestBody AlunosUsdValueDTO AlunosUsdValueDTO
+    // ) {
+    // return AlunosService.updatePrice(id, AlunosUsdValueDTO);
     // }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
-        AlunosService.delete(id);
+        alunosService.delete(id);
     }
-
 
 }

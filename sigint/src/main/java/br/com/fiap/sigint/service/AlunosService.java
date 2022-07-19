@@ -12,7 +12,5 @@ public interface AlunosService {
     AlunosDTO findById(int id);
     AlunosDTO create(AlunosCreateUpdateDTO alunosCreateUpdateDTO);
     AlunosDTO update(int id, AlunosCreateUpdateDTO alunosCreateUpdateDTO);
-    // AlunosDTO updatePrice(int id, CryptoUsdValueDTO cryptoUsdValueDTO);
     void delete(int id);
-    
 }

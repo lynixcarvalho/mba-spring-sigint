@@ -15,19 +15,19 @@ import br.com.fiap.sigint.repository.AlunosRepository;
 @Service
 public class AlunosServiceImpl implements AlunosService{
 
-    private AlunosRepository AlunosRepository;
+    private AlunosRepository alunosRepository;
 
-    public AlunosServiceImpl(AlunosRepository AlunosRepository){
-        this.AlunosRepository = AlunosRepository;
+    public AlunosServiceImpl(AlunosRepository alunosRepository){
+        this.alunosRepository = alunosRepository;
     }
 
     @Override
     public List<AlunosDTO> listAll(String name) {
         List<AlunosEntity> alunosEntityList;
         if(name == null){
-            alunosEntityList = AlunosRepository.findAll();
+            alunosEntityList = alunosRepository.findAll();
         } else {
-            alunosEntityList = AlunosRepository.findAllByNameContaining(name);
+            alunosEntityList = alunosRepository.findAllByNameContaining(name);
         }
         return alunosEntityList
                 .stream()
@@ -37,9 +37,9 @@ public class AlunosServiceImpl implements AlunosService{
 
     @Override
     public AlunosDTO findById(int id) {
-        AlunosEntity AlunosEntity = AlunosRepository.findById(id)
+        AlunosEntity alunosEntity = alunosRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return new AlunosDTO(AlunosEntity);
+        return new AlunosDTO(alunosEntity);
     }
 
     @Override
@@ -50,20 +50,20 @@ public class AlunosServiceImpl implements AlunosService{
         entity.setMatricula(alunosCreateUpdateDTO.getMatricula());
         entity.setTurma(alunosCreateUpdateDTO.getTurma());
 
-        AlunosEntity savedEntity = AlunosRepository.save(entity);
+        AlunosEntity savedEntity = alunosRepository.save(entity);
         return new AlunosDTO(savedEntity);
     }
 
     @Override
     public AlunosDTO update(int id, AlunosCreateUpdateDTO alunosCreateUpdateDTO) {
-        AlunosEntity entity = AlunosRepository.findById(id)
+        AlunosEntity entity = alunosRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         entity.setName(alunosCreateUpdateDTO.getName());
         entity.setMatricula(alunosCreateUpdateDTO.getMatricula());
         entity.setTurma(alunosCreateUpdateDTO.getTurma());
 
-        AlunosEntity savedEntity = AlunosRepository.save(entity);
+        AlunosEntity savedEntity = alunosRepository.save(entity);
         return new AlunosDTO(savedEntity);
     }
 
@@ -80,9 +80,9 @@ public class AlunosServiceImpl implements AlunosService{
 
     @Override
     public void delete(int id) {
-        AlunosEntity entity = AlunosRepository.findById(id)
+        AlunosEntity entity = alunosRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        AlunosRepository.delete(entity);
+                alunosRepository.delete(entity);
     }
 
     

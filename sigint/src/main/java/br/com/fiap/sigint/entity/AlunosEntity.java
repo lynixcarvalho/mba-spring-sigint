@@ -1,13 +1,18 @@
 package br.com.fiap.sigint.entity;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -25,12 +30,16 @@ public class AlunosEntity {
 
     @Column
     private String name;
-    
-    @Column
+
+    @Column(unique = true)
     private int matricula;
-    
+
     @Column
     private String turma;
+
+    // @Column
+    // @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="alunos")
+    // private Set<CartaoEntity> cartao = new LinkedHashSet<CartaoEntity>();
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
@@ -71,6 +80,14 @@ public class AlunosEntity {
     public void setTurma(String turma) {
         this.turma = turma;
     }
+
+    // public Set<CartaoEntity> getCartao() {
+    //     return cartao;
+    // }
+
+    // public void setCartao(Set<CartaoEntity> cartao) {
+    //     this.cartao = cartao;
+    // }
 
     public Date getCreatedDate() {
         return this.createdDate;
