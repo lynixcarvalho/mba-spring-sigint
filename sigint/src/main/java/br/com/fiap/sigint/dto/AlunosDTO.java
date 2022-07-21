@@ -11,7 +11,7 @@ public class AlunosDTO {
     private String name;
     private int matricula;
     private String turma;
-    //private Set<CartaoEntity> cardNumber;
+    private Set<CartaoEntity> cardNumber;
 
     public AlunosDTO() {
     }
@@ -24,11 +24,10 @@ public class AlunosDTO {
     }
 
     public AlunosDTO(AlunosEntity entity) {
-        this.id = entity.getId();
         this.name = entity.getName();
         this.matricula = entity.getMatricula();
         this.turma = entity.getTurma();
-        //this.cardNumber = entity.getCartao();
+        this.cardNumber = entity.getCartao();
     }
 
     public int getId() {
@@ -63,12 +62,12 @@ public class AlunosDTO {
         this.turma = turma;
     }
 
-    // public Set<CartaoEntity> getCardNumber() {
-    //     return cardNumber;
-    // }
+    public Set<CartaoEntity> getCardNumber() {
+        return cardNumber;
+    }
 
-    // public void setCardNumber(Set<CartaoEntity> cardNumber) {
-    //     this.cardNumber = cardNumber;
-    // }
+    public void setCardNumber(Set<CartaoEntity> cardNumber) {
+        this.cardNumber = cardNumber;
+    }
 
 }

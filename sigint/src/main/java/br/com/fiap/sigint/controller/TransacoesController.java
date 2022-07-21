@@ -39,9 +39,9 @@ public class TransacoesController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public TransacoesDTO insert(
-            @RequestBody TransacoesCreateUpdateDTO cartaoCreateUpdateDTO) {
-        return transacoesService.create(cartaoCreateUpdateDTO);
+    public TransacoesDTO create(
+            @RequestBody TransacoesCreateUpdateDTO transacoesCreateUpdateDTO) {
+        return transacoesService.create(transacoesCreateUpdateDTO);
     }
 
     @DeleteMapping("{id}")

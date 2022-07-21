@@ -20,7 +20,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "TB_ALUNOS")
+@Table(name = "ALUNOS")
 @EntityListeners(AuditingEntityListener.class)
 public class AlunosEntity {
 
@@ -37,9 +37,9 @@ public class AlunosEntity {
     @Column
     private String turma;
 
-    // @Column
-    // @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="alunos")
-    // private Set<CartaoEntity> cartao = new LinkedHashSet<CartaoEntity>();
+    @Column
+    @OneToMany(mappedBy="alunos", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    private Set<CartaoEntity> cartao = new LinkedHashSet<CartaoEntity>();
 
     @Column(nullable = false, updatable = false)
     @CreatedDate
@@ -50,7 +50,7 @@ public class AlunosEntity {
     private Date modifiedDate;
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {
@@ -81,13 +81,13 @@ public class AlunosEntity {
         this.turma = turma;
     }
 
-    // public Set<CartaoEntity> getCartao() {
-    //     return cartao;
-    // }
+    public Set<CartaoEntity> getCartao() {
+        return cartao;
+    }
 
-    // public void setCartao(Set<CartaoEntity> cartao) {
-    //     this.cartao = cartao;
-    // }
+    public void setCartao(Set<CartaoEntity> cartao) {
+        this.cartao = cartao;
+    }
 
     public Date getCreatedDate() {
         return this.createdDate;

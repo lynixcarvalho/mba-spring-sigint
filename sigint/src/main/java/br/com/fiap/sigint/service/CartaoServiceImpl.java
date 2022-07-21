@@ -23,9 +23,9 @@ public class CartaoServiceImpl implements CartaoService {
 
     @Override
     public List<CartaoDTO> listAll() {
-        List<CartaoEntity> cartaoEntityList;    
-        cartaoEntityList = cartaoRepository.findAll();
-        return cartaoEntityList
+        List<CartaoEntity> cartaoList;    
+        cartaoList = cartaoRepository.findAll();
+        return cartaoList
                 .stream()
                 .map(entity -> new CartaoDTO(entity))
                 .collect(Collectors.toList());
@@ -33,38 +33,38 @@ public class CartaoServiceImpl implements CartaoService {
 
     @Override
     public CartaoDTO findById(int id) {
-        CartaoEntity cartaoEntity = cartaoRepository.findById(id)
+        CartaoEntity cartao = cartaoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return new CartaoDTO(cartaoEntity);
+        return new CartaoDTO(cartao);
     }
 
-    // @Override
-    // public CartaoDTO findCardByNumber(Long cardNumber) {
-    //     CartaoEntity cartaoEntity = cartaoRepository.findByNumber(cardNumber);
-    //     if (cartaoEntity == null) {
-    //         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-    //     } else {
-    //         return new CartaoDTO(cartaoEntity);
-    //     }
-    // }
+    @Override
+    public CartaoDTO findByCardNumber(Long cardNumber) {
+        CartaoEntity cartao = cartaoRepository.findByCardNumber(cardNumber);
+        if (cartao == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            return new CartaoDTO(cartao);
+        }
+    }
 
     @Override
     public CartaoDTO create(CartaoCreateUpdateDTO cartaoCreateUpdateDTO) {
-        CartaoEntity entity = new CartaoEntity();
+        CartaoEntity cartao = new CartaoEntity();
 
-        entity.setCardNumber(cartaoCreateUpdateDTO.getCardNumber());
-        entity.setLimite(cartaoCreateUpdateDTO.getLimite());
-        entity.setSenha(cartaoCreateUpdateDTO.getSenha());
+        cartao.setCardNumber(cartaoCreateUpdateDTO.getCardNumber());
+        cartao.setLimite(cartaoCreateUpdateDTO.getLimite());
+        cartao.setSenha(cartaoCreateUpdateDTO.getSenha());
 
-        CartaoEntity savedEntity = cartaoRepository.save(entity);
-        return new CartaoDTO(savedEntity);
+        CartaoEntity savedCartao = cartaoRepository.save(cartao);
+        return new CartaoDTO(savedCartao);
     }
 
     @Override
     public void delete(int id) {
-        CartaoEntity entity = cartaoRepository.findById(id)
+        CartaoEntity cartao = cartaoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        cartaoRepository.delete(entity);
+        cartaoRepository.delete(cartao);
     }
 
 }

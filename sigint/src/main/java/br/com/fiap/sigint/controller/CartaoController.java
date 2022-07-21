@@ -29,6 +29,11 @@ public class CartaoController {
         return cartaoService.findById(id);
     }
 
+    @GetMapping("cartao/{card_number}")
+    public CartaoDTO getByCardNumber(@PathVariable Long cardNumber) {
+        return cartaoService.findByCardNumber(cardNumber);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CartaoDTO insert(

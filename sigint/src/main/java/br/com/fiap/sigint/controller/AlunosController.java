@@ -30,6 +30,16 @@ public class AlunosController {
         return alunosService.findById(id);
     }
 
+    @GetMapping("matricula/{matricula}")
+    public AlunosDTO getByMatricula(@PathVariable int matricula) {
+        return alunosService.findByMatricula(matricula);
+    }
+
+    @GetMapping("turma/{turma}")
+    public List<AlunosDTO> getByTurma(@PathVariable String turma) {
+        return alunosService.findByTurma(turma);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public AlunosDTO insert(
@@ -43,14 +53,6 @@ public class AlunosController {
             @PathVariable int id) {
         return alunosService.update(id, createUpdateAlunosDTO);
     }
-
-    // @PatchMapping("{id}")
-    // public AlunosDTO updateUsdValue(
-    // @PathVariable int id,
-    // @RequestBody AlunosUsdValueDTO AlunosUsdValueDTO
-    // ) {
-    // return AlunosService.updatePrice(id, AlunosUsdValueDTO);
-    // }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

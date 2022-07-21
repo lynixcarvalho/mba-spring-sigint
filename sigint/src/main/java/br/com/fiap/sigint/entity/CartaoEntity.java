@@ -2,22 +2,27 @@ package br.com.fiap.sigint.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "TB_CARTAO")
+@Table(name = "CARTAO")
 @EntityListeners(AuditingEntityListener.class)
 public class CartaoEntity {
 
@@ -35,17 +40,30 @@ public class CartaoEntity {
     private String senha;
 
     @Column(nullable = false, updatable = false)
+    @CreatedDate
     private Date createdDate;
 
-    // @Column(nullable = true, updatable = false)
-    // private Date cancelDate;
+    @Column(nullable = true, updatable = false)
+    private Date cancelDate;
 
-    // @Column(nullable = false, updatable = false)
-    // private Date expiredDate;
+    @Column(nullable = false, updatable = false)
+    private Date expiredDate;
 
-    // @ManyToOne
-    // @JoinColumn(name = "alunos_id")
-    // private AlunosEntity alunos;
+    @ManyToOne()
+    @JoinColumn(name = "alunos_id")
+    private AlunosEntity alunos;
+
+    @Column
+    @OneToMany(mappedBy="cartao", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    private Set<TransacoesEntity> transacoes = new LinkedHashSet<TransacoesEntity>();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Long getCardNumber() {
         return cardNumber;
@@ -79,29 +97,35 @@ public class CartaoEntity {
         this.createdDate = createdDate;
     }
 
-    // // public Date getCancelDate() {
-    // // return cancelDate;
-    // // }
+    public Date getCancelDate() {
+        return cancelDate;
+    }
 
-    // // public void setCancelDate(Date cancelDate) {
-    // // this.cancelDate = cancelDate;
-    // // }
+    public void setCancelDate(Date cancelDate) {
+        this.cancelDate = cancelDate;
+    }
 
-    // // public Date getExpiredDate() {
-    // // return expiredDate;
-    // // }
+    public Date getExpiredDate() {
+        return expiredDate;
+    }
 
-    // // public void setExpiredDate(Date expiredDate) {
-    // Date date = this.createdDate;
-    // date = DateUtils.addYears(date, 3);
-    // this.expiredDate = date;
-    // }
+    public void setExpiredDate(Date expiredDate) {
+        this.expiredDate = expiredDate;
+    }
 
-    // public AlunosEntity getAlunos() {
-    //     return alunos;
-    // }
+    public AlunosEntity getAlunos() {
+        return alunos;
+    }
 
-    // public void setAlunosEntity(AlunosEntity alunos) {
-    //     this.alunos = alunos;
-    // }
+    public void setAlunos(AlunosEntity alunos) {
+        this.alunos = alunos;
+    }
+
+    public Set<TransacoesEntity> getTransacoes() {
+        return transacoes;
+    }
+
+    public void setTransacoes(Set<TransacoesEntity> transacoes) {
+        this.transacoes = transacoes;
+    }
 }

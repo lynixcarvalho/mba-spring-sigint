@@ -7,9 +7,10 @@ import br.com.fiap.sigint.dto.AlunosDTO;
 
 public interface AlunosService {
 
-    // CRUD
     List<AlunosDTO> listAll(String name);
     AlunosDTO findById(int id);
+    AlunosDTO findByMatricula(int matricula);
+    List<AlunosDTO> findByTurma(String turma);
     AlunosDTO create(AlunosCreateUpdateDTO alunosCreateUpdateDTO);
     AlunosDTO update(int id, AlunosCreateUpdateDTO alunosCreateUpdateDTO);
     void delete(int id);

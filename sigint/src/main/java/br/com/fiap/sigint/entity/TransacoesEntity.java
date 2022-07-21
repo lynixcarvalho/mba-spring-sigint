@@ -9,12 +9,14 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.boot.actuate.audit.listener.AuditListener;
 
 @Entity
-@Table(name = "TB_TRANSACOES")
+@Table(name = "TRANSACOES")
 @EntityListeners(AuditListener.class)
 public class TransacoesEntity {
 
@@ -22,11 +24,15 @@ public class TransacoesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, updatable = false)
-    private Date createdDate;
-
     @Column
     private BigDecimal valor;
+
+    @ManyToOne
+    @JoinColumn(name = "cartao_id")
+    private CartaoEntity cartao;
+
+    @Column(nullable = false, updatable = false)
+    private Date createdDate;
 
     public int getId() {
         return id;
@@ -34,6 +40,22 @@ public class TransacoesEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public CartaoEntity getCartao() {
+        return cartao;
+    }
+
+    public void setCartao(CartaoEntity cartao) {
+        this.cartao = cartao;
     }
 
     public Date getCreatedDate() {
@@ -44,12 +66,5 @@ public class TransacoesEntity {
         this.createdDate = createdDate;
     }
 
-    public BigDecimal getValor() {
-        return valor;
-    }
-
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
-    
+        
 }

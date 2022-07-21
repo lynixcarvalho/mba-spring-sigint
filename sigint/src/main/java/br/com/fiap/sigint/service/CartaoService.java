@@ -8,11 +8,8 @@ import br.com.fiap.sigint.dto.CartaoDTO;
 public interface CartaoService {
 
     List<CartaoDTO> listAll();
-
     CartaoDTO findById(int id);
-
-    // CartaoDTO findCardByNumber(Long cardNumber);
+    CartaoDTO findByCardNumber(Long cardNumber);
     CartaoDTO create(CartaoCreateUpdateDTO cartaoCreateUpdateDTO);
-
     void delete(int id);
 }
