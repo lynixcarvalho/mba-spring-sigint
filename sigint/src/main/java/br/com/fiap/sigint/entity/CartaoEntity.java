@@ -1,5 +1,6 @@
 package br.com.fiap.sigint.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -22,9 +23,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "CARTAO")
+@Table(name = "cartao")
 @EntityListeners(AuditingEntityListener.class)
-public class CartaoEntity {
+public class CartaoEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,6 +57,9 @@ public class CartaoEntity {
     @Column
     @OneToMany(mappedBy="cartao", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<TransacoesEntity> transacoes = new LinkedHashSet<TransacoesEntity>();
+
+    public CartaoEntity() {
+    }
 
     public int getId() {
         return id;

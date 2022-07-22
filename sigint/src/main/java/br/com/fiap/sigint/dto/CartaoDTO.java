@@ -38,7 +38,6 @@ public class CartaoDTO {
         this.cancelDate = entity.getCancelDate();
         this.expiredDate = entity.getExpiredDate();
         this.alunos = entity.getAlunos();
-        this.transacoes = entity.getTransacoes();
     }
 
     public int getId() {

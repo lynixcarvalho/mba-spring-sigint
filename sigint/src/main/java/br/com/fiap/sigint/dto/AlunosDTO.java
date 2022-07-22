@@ -27,7 +27,6 @@ public class AlunosDTO {
         this.name = entity.getName();
         this.matricula = entity.getMatricula();
         this.turma = entity.getTurma();
-        this.cardNumber = entity.getCartao();
     }
 
     public int getId() {

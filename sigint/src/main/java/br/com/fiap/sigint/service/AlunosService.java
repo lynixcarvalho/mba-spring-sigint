@@ -12,6 +12,6 @@ public interface AlunosService {
     AlunosDTO findByMatricula(int matricula);
     List<AlunosDTO> findByTurma(String turma);
     AlunosDTO create(AlunosCreateUpdateDTO alunosCreateUpdateDTO);
-    AlunosDTO update(int id, AlunosCreateUpdateDTO alunosCreateUpdateDTO);
+    AlunosDTO update(int matricula, AlunosCreateUpdateDTO alunosCreateUpdateDTO);
     void delete(int id);
 }

@@ -9,16 +9,20 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.sigint.dto.CartaoCreateUpdateDTO;
 import br.com.fiap.sigint.dto.CartaoDTO;
+import br.com.fiap.sigint.entity.AlunosEntity;
 import br.com.fiap.sigint.entity.CartaoEntity;
+import br.com.fiap.sigint.repository.AlunosRepository;
 import br.com.fiap.sigint.repository.CartaoRepository;
 
 @Service
 public class CartaoServiceImpl implements CartaoService {
 
     private CartaoRepository cartaoRepository;
+    private AlunosRepository alunosRepository;
 
-    public CartaoServiceImpl(CartaoRepository cartaoRepository) {
+    public CartaoServiceImpl(CartaoRepository cartaoRepository, AlunosRepository alunosRepository) {
         this.cartaoRepository = cartaoRepository;
+        this.alunosRepository = alunosRepository;
     }
 
     @Override
@@ -50,13 +54,17 @@ public class CartaoServiceImpl implements CartaoService {
 
     @Override
     public CartaoDTO create(CartaoCreateUpdateDTO cartaoCreateUpdateDTO) {
+        AlunosEntity aluno = alunosRepository.findByMatricula(cartaoCreateUpdateDTO.getMatricula());
+        
         CartaoEntity cartao = new CartaoEntity();
-
         cartao.setCardNumber(cartaoCreateUpdateDTO.getCardNumber());
         cartao.setLimite(cartaoCreateUpdateDTO.getLimite());
         cartao.setSenha(cartaoCreateUpdateDTO.getSenha());
+        cartao.setExpiredDate(cartaoCreateUpdateDTO.getExpiredDate());
+        cartao.setAlunos(aluno);
 
         CartaoEntity savedCartao = cartaoRepository.save(cartao);
+        
         return new CartaoDTO(savedCartao);
     }
 

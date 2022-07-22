@@ -9,16 +9,20 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.sigint.dto.TransacoesCreateUpdateDTO;
 import br.com.fiap.sigint.dto.TransacoesDTO;
+import br.com.fiap.sigint.entity.CartaoEntity;
 import br.com.fiap.sigint.entity.TransacoesEntity;
+import br.com.fiap.sigint.repository.CartaoRepository;
 import br.com.fiap.sigint.repository.TransacoesRepository;
 
 @Service
 public class TransacoesServiceImpl implements TransacoesService {
 
     private TransacoesRepository transacoesRepository;
+    private CartaoRepository cartaoRepository;
 
-    public TransacoesServiceImpl(TransacoesRepository transacoesRepository) {
+    public TransacoesServiceImpl(TransacoesRepository transacoesRepository, CartaoRepository cartaoRepository) {
         this.transacoesRepository = transacoesRepository;
+        this.cartaoRepository = cartaoRepository;
     }
 
     @Override
@@ -37,12 +41,15 @@ public class TransacoesServiceImpl implements TransacoesService {
 
     @Override
     public TransacoesDTO create(TransacoesCreateUpdateDTO transacoesCreateUpdateDTO) {
-        TransacoesEntity entity = new TransacoesEntity();
+        CartaoEntity cartao = cartaoRepository.findByCardNumber(transacoesCreateUpdateDTO.getCartao());
+        
+        TransacoesEntity transacao = new TransacoesEntity();
+        transacao.setValor(transacoesCreateUpdateDTO.getValor());
+        transacao.setCartao(cartao);
 
-        entity.setValor(transacoesCreateUpdateDTO.getValor());
+        TransacoesEntity savedTransacao = transacoesRepository.save(transacao);
 
-        TransacoesEntity savedEntity = transacoesRepository.save(entity);
-        return new TransacoesDTO(savedEntity);
+        return new TransacoesDTO(savedTransacao);
     }
 
     @Override

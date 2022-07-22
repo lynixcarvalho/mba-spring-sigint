@@ -4,8 +4,10 @@ server:
 spring:
   datasource:
     url: jdbc:h2:file:./db/sigint;DB_CLOSE_ON_EXIT=FALSE
-    username: fiap
-    password: fiap
+    # url: jdbc:mysql://0.0.0.0:3306/bancofiap
+    username: root
+    password: fiap-mba
+    # driver-class-nam: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: validate

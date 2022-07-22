@@ -29,7 +29,7 @@ public class CartaoController {
         return cartaoService.findById(id);
     }
 
-    @GetMapping("cartao/{card_number}")
+    @GetMapping("cartao/{cardNumber}")
     public CartaoDTO getByCardNumber(@PathVariable Long cardNumber) {
         return cartaoService.findByCardNumber(cardNumber);
     }

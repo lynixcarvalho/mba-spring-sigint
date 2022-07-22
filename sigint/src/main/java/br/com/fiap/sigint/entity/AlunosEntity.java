@@ -1,5 +1,6 @@
 package br.com.fiap.sigint.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,9 +21,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "ALUNOS")
+@Table(name = "alunos")
 @EntityListeners(AuditingEntityListener.class)
-public class AlunosEntity {
+public class AlunosEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +49,23 @@ public class AlunosEntity {
     @Column(nullable = false, updatable = true)
     @LastModifiedDate
     private Date modifiedDate;
+
+    public AlunosEntity() {
+    }
+
+    public AlunosEntity(int id, String name, int matricula, String turma) {
+        this.id = id;
+        this.name = name;
+        this.matricula = matricula;
+        this.turma = turma;
+    }
+
+    public AlunosEntity(int id, String name, int matricula, String turma, Set<CartaoEntity> cartao) {
+        this.name = name;
+        this.matricula = matricula;
+        this.turma = turma;
+        this.cartao = cartao;
+    }
 
     public int getId() {
         return id;

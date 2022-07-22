@@ -1,5 +1,6 @@
 package br.com.fiap.sigint.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -16,9 +17,9 @@ import javax.persistence.Table;
 import org.springframework.boot.actuate.audit.listener.AuditListener;
 
 @Entity
-@Table(name = "TRANSACOES")
+@Table(name = "transacoes")
 @EntityListeners(AuditListener.class)
-public class TransacoesEntity {
+public class TransacoesEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
