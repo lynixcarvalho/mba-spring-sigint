@@ -9,23 +9,21 @@ import org.apache.commons.lang3.time.DateUtils;
 
 public class CartaoCreateUpdateDTO {
     
-    private Long cardNumber;
+    private Long cartao;
     private BigDecimal limite;
     private String senha;
     private Date expiredDate;
     private int matricula;
 
-    public Long getCardNumber() {
+    public Long getCartao() {
         Random rand = new Random();
         int prefix = 99;
         long x = (long)(rand.nextDouble()*100000000000000L);
         String s = String.valueOf(prefix) + String.format("%014d", x);
-        cardNumber = Long.valueOf(s);
-        return cardNumber;
+        cartao = Long.valueOf(s);
+        return cartao;
     }
-    public void setCardNumber(Long cardNumber) {
-        this.cardNumber = cardNumber;
-    }
+
     public BigDecimal getLimite() {
         return limite;
     }

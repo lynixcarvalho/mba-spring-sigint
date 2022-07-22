@@ -3,23 +3,20 @@ package br.com.fiap.sigint.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import br.com.fiap.sigint.entity.AlunosEntity;
 import br.com.fiap.sigint.entity.CartaoEntity;
 
-public class CartaoDTO {
+public class CartaoAlunoDTO {
 
     private Long cartao;
     private BigDecimal limite;
     private String senha;
     private Date cancelDate;
     private Date expiredDate;
-    private String nome;
-    private int matricula;
 
-    public CartaoDTO() {
+    public CartaoAlunoDTO() {
     }
 
-    public CartaoDTO(Long cartao, BigDecimal limite, String senha, Date cancelDate, Date expiredDate) {
+    public CartaoAlunoDTO(Long cartao, BigDecimal limite, String senha, Date cancelDate, Date expiredDate) {
         this.cartao = cartao;
         this.limite = limite;
         this.senha = senha;
@@ -27,14 +24,12 @@ public class CartaoDTO {
         this.expiredDate = expiredDate;
     }
 
-    public CartaoDTO(CartaoEntity entity) {
+    public CartaoAlunoDTO(CartaoEntity entity) {
         this.cartao = entity.getCartao();
         this.limite = entity.getLimite();
         this.senha = entity.getSenha();
         this.cancelDate = entity.getCancelDate();
         this.expiredDate = entity.getExpiredDate();
-        this.nome = entity.getAlunos().getNome();
-        this.matricula = entity.getAlunos().getMatricula();
     }
 
     public Long getCartao() {
@@ -75,21 +70,5 @@ public class CartaoDTO {
 
     public void setExpiredDate(Date expiredDate) {
         this.expiredDate = expiredDate;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
     }
 }

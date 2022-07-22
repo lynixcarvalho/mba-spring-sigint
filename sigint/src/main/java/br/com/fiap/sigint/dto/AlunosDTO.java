@@ -1,48 +1,31 @@
 package br.com.fiap.sigint.dto;
 
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.fiap.sigint.entity.AlunosEntity;
-import br.com.fiap.sigint.entity.CartaoEntity;
 
 public class AlunosDTO {
     
-    private int id;
-    private String name;
     private int matricula;
+
+    private String nome;
     private String turma;
-    private Set<CartaoEntity> cardNumber;
+    private List<CartaoAlunoDTO> cartao;
 
     public AlunosDTO() {
     }
 
-    public AlunosDTO(int id, String name, int matricula, String turma) {
-        this.id = id;
-        this.name = name;
-        this.matricula = matricula;
+    public AlunosDTO(String nome, String turma) {
+        this.nome = nome;
         this.turma = turma;
     }
 
     public AlunosDTO(AlunosEntity entity) {
-        this.name = entity.getName();
         this.matricula = entity.getMatricula();
+        this.nome = entity.getNome();
         this.turma = entity.getTurma();
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.cartao = entity.getCartao().stream().map(ent -> new CartaoAlunoDTO(ent)).collect(Collectors.toList());
     }
 
     public int getMatricula() {
@@ -53,6 +36,14 @@ public class AlunosDTO {
         this.matricula = matricula;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getTurma() {
         return turma;
     }
@@ -61,12 +52,12 @@ public class AlunosDTO {
         this.turma = turma;
     }
 
-    public Set<CartaoEntity> getCardNumber() {
-        return cardNumber;
+    public List<CartaoAlunoDTO> getCartao() {
+        return cartao;
     }
 
-    public void setCardNumber(Set<CartaoEntity> cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCartao(List<CartaoAlunoDTO> cartao) {
+        this.cartao = cartao;
     }
 
 }

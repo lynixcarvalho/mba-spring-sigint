@@ -2,24 +2,15 @@ package br.com.fiap.sigint.dto;
 
 public class AlunosCreateUpdateDTO {
 
-    private String name;
-    private int matricula;
+    private String nome;
     private String turma;
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getMatricula() {
-        return this.matricula;
-    }
-
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getTurma() {

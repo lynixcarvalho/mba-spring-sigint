@@ -27,7 +27,7 @@ public class CartaoServiceImpl implements CartaoService {
 
     @Override
     public List<CartaoDTO> listAll() {
-        List<CartaoEntity> cartaoList;    
+        List<CartaoEntity> cartaoList;
         cartaoList = cartaoRepository.findAll();
         return cartaoList
                 .stream()
@@ -36,19 +36,12 @@ public class CartaoServiceImpl implements CartaoService {
     }
 
     @Override
-    public CartaoDTO findById(int id) {
-        CartaoEntity cartao = cartaoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return new CartaoDTO(cartao);
-    }
-
-    @Override
-    public CartaoDTO findByCardNumber(Long cardNumber) {
-        CartaoEntity cartao = cartaoRepository.findByCardNumber(cardNumber);
-        if (cartao == null) {
+    public CartaoDTO findByCartao(Long cartao) {
+        CartaoEntity entity = cartaoRepository.findByCartao(cartao);
+        if (entity == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
-            return new CartaoDTO(cartao);
+            return new CartaoDTO(entity);
         }
     }
 
@@ -57,7 +50,7 @@ public class CartaoServiceImpl implements CartaoService {
         AlunosEntity aluno = alunosRepository.findByMatricula(cartaoCreateUpdateDTO.getMatricula());
         
         CartaoEntity cartao = new CartaoEntity();
-        cartao.setCardNumber(cartaoCreateUpdateDTO.getCardNumber());
+        cartao.setCartao(cartaoCreateUpdateDTO.getCartao());
         cartao.setLimite(cartaoCreateUpdateDTO.getLimite());
         cartao.setSenha(cartaoCreateUpdateDTO.getSenha());
         cartao.setExpiredDate(cartaoCreateUpdateDTO.getExpiredDate());
@@ -69,10 +62,13 @@ public class CartaoServiceImpl implements CartaoService {
     }
 
     @Override
-    public void delete(int id) {
-        CartaoEntity cartao = cartaoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        cartaoRepository.delete(cartao);
+    public void delete(Long cartao) {
+        CartaoEntity entity = cartaoRepository.findByCartao(cartao);
+        if (entity == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            cartaoRepository.delete(entity);
+        }
     }
 
 }

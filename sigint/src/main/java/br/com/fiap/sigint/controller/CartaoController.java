@@ -24,14 +24,9 @@ public class CartaoController {
         return cartaoService.listAll();
     }
 
-    @GetMapping("{id}")
-    public CartaoDTO getById(@PathVariable int id) {
-        return cartaoService.findById(id);
-    }
-
-    @GetMapping("cartao/{cardNumber}")
-    public CartaoDTO getByCardNumber(@PathVariable Long cardNumber) {
-        return cartaoService.findByCardNumber(cardNumber);
+    @GetMapping("cartao/{cartao}")
+    public CartaoDTO getByCardNumber(@PathVariable Long cartao) {
+        return cartaoService.findByCartao(cartao);
     }
 
     @PostMapping
@@ -41,10 +36,10 @@ public class CartaoController {
         return cartaoService.create(cartaoCreateUpdateDTO);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("cartao/{cartao}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id) {
-        cartaoService.delete(id);
+    public void delete(@PathVariable Long cartao) {
+        cartaoService.delete(cartao);
     }
 
 }

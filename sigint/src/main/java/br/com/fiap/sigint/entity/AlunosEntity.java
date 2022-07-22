@@ -27,13 +27,11 @@ public class AlunosEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column
-    private String name;
-
     @Column(unique = true)
     private int matricula;
+
+    @Column
+    private String nome;
 
     @Column
     private String turma;
@@ -50,38 +48,21 @@ public class AlunosEntity implements Serializable{
     @LastModifiedDate
     private Date modifiedDate;
 
-    public AlunosEntity() {
-    }
+    // public AlunosEntity() {
+    // }
 
-    public AlunosEntity(int id, String name, int matricula, String turma) {
-        this.id = id;
-        this.name = name;
-        this.matricula = matricula;
-        this.turma = turma;
-    }
+    // public AlunosEntity(int matricula, String nome, String turma) {
+    //     this.nome = nome;
+    //     this.matricula = matricula;
+    //     this.turma = turma;
+    // }
 
-    public AlunosEntity(int id, String name, int matricula, String turma, Set<CartaoEntity> cartao) {
-        this.name = name;
-        this.matricula = matricula;
-        this.turma = turma;
-        this.cartao = cartao;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    // public AlunosEntity(int matricula, String nome, String turma, Set<CartaoEntity> cartao) {
+    //     this.nome = nome;
+    //     this.matricula = matricula;
+    //     this.turma = turma;
+    //     this.cartao = cartao;
+    // }
 
     public int getMatricula() {
         return this.matricula;
@@ -89,6 +70,14 @@ public class AlunosEntity implements Serializable{
 
     public void setMatricula(int matricula) {
         this.matricula = matricula;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getTurma() {

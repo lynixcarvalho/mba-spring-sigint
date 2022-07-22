@@ -11,8 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,11 +26,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class CartaoEntity implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     @Column(unique = true)
-    private Long cardNumber;
+    private Long cartao;
 
     @Column
     private BigDecimal limite;
@@ -43,7 +38,7 @@ public class CartaoEntity implements Serializable{
     @Column(nullable = false, updatable = false)
     @CreatedDate
     private Date createdDate;
-
+    
     @Column(nullable = true, updatable = false)
     private Date cancelDate;
 
@@ -58,23 +53,12 @@ public class CartaoEntity implements Serializable{
     @OneToMany(mappedBy="cartao", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<TransacoesEntity> transacoes = new LinkedHashSet<TransacoesEntity>();
 
-    public CartaoEntity() {
+    public Long getCartao() {
+        return cartao;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Long getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(Long cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCartao(Long cartao) {
+        this.cartao = cartao;
     }
 
     public BigDecimal getLimite() {
@@ -132,4 +116,6 @@ public class CartaoEntity implements Serializable{
     public void setTransacoes(Set<TransacoesEntity> transacoes) {
         this.transacoes = transacoes;
     }
+
+    
 }

@@ -21,13 +21,8 @@ public class AlunosController {
 
     @GetMapping
     public List<AlunosDTO> listAlunos(
-            @RequestParam(required = false) String name) {
-        return alunosService.listAll(name);
-    }
-
-    @GetMapping("{id}")
-    public AlunosDTO getById(@PathVariable int id) {
-        return alunosService.findById(id);
+            @RequestParam(required = false) String nome) {
+        return alunosService.listAll(nome);
     }
 
     @GetMapping("matricula/{matricula}")
@@ -47,17 +42,17 @@ public class AlunosController {
         return alunosService.create(createUpdateAlunosDTO);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("matricula/{matricula}")
     public AlunosDTO update(
             @RequestBody AlunosCreateUpdateDTO createUpdateAlunosDTO,
-            @PathVariable int id) {
-        return alunosService.update(id, createUpdateAlunosDTO);
+            @PathVariable int matricula) {
+        return alunosService.update(matricula, createUpdateAlunosDTO);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("matricula/{matricula}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id) {
-        alunosService.delete(id);
+    public void delete(@PathVariable int matricula) {
+        alunosService.delete(matricula);
     }
 
 }

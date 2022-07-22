@@ -9,15 +9,16 @@ import br.com.fiap.sigint.entity.AlunosEntity;
 
 public interface AlunosRepository extends JpaRepository<AlunosEntity, Integer> {
 
-    List<AlunosEntity> findAllByNameContaining(String name);
+    @Query(
+        value = "SELECT * FROM ALUNOS a WHERE a.nome LIKE ?1", 
+        nativeQuery = true)
+        List<AlunosEntity> findByNome(String nome); 
 
-    //@Query("from ALUNOS a where a.matricula = :matricula")
     @Query(
         value = "SELECT * FROM ALUNOS a WHERE a.matricula = ?1", 
         nativeQuery = true)
     AlunosEntity findByMatricula(int matricula); 
 
-    //@Query("from ALUNOS a where a.turma = :turma")
     @Query(
         value = "SELECT * FROM ALUNOS a WHERE a.turma = ?1", 
         nativeQuery = true)

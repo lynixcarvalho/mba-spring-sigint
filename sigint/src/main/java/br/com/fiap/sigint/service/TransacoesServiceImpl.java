@@ -41,7 +41,7 @@ public class TransacoesServiceImpl implements TransacoesService {
 
     @Override
     public TransacoesDTO create(TransacoesCreateUpdateDTO transacoesCreateUpdateDTO) {
-        CartaoEntity cartao = cartaoRepository.findByCardNumber(transacoesCreateUpdateDTO.getCartao());
+        CartaoEntity cartao = cartaoRepository.findByCartao(transacoesCreateUpdateDTO.getCartao());
         
         TransacoesEntity transacao = new TransacoesEntity();
         transacao.setValor(transacoesCreateUpdateDTO.getValor());

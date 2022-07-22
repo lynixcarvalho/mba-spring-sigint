@@ -22,34 +22,17 @@ public class AlunosServiceImpl implements AlunosService {
     }
 
     @Override
-    public List<AlunosDTO> listAll(String name) {
+    public List<AlunosDTO> listAll(String nome) {
         List<AlunosEntity> alunosEntityList;
-        if (name == null) {
+        if (nome == null) {
             alunosEntityList = alunosRepository.findAll();
         } else {
-            alunosEntityList = alunosRepository.findAllByNameContaining(name);
+            alunosEntityList = alunosRepository.findByNome(nome);
         }
         return alunosEntityList
                 .stream()
                 .map(entity -> new AlunosDTO(entity))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public AlunosDTO findById(int id) {
-        AlunosEntity alunosEntity = alunosRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return new AlunosDTO(alunosEntity);
-    }
-
-    @Override
-    public AlunosDTO findByMatricula(int matricula) {
-        AlunosEntity aluno = alunosRepository.findByMatricula(matricula);
-        if (aluno == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        } else {
-            return new AlunosDTO(aluno);
-        }
     }
 
     @Override
@@ -63,11 +46,20 @@ public class AlunosServiceImpl implements AlunosService {
     }
 
     @Override
+    public AlunosDTO findByMatricula(int matricula) {
+        AlunosEntity aluno = alunosRepository.findByMatricula(matricula);
+        if (aluno == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            return new AlunosDTO(aluno);
+        }
+    }
+
+    @Override
     public AlunosDTO create(AlunosCreateUpdateDTO alunosCreateUpdateDTO) {
         AlunosEntity aluno = new AlunosEntity();
 
-        aluno.setName(alunosCreateUpdateDTO.getName());
-        aluno.setMatricula(alunosCreateUpdateDTO.getMatricula());
+        aluno.setNome(alunosCreateUpdateDTO.getNome());
         aluno.setTurma(alunosCreateUpdateDTO.getTurma());
 
         AlunosEntity savedAluno = alunosRepository.save(aluno);
@@ -75,23 +67,27 @@ public class AlunosServiceImpl implements AlunosService {
     }
 
     @Override
-    public AlunosDTO update(int id, AlunosCreateUpdateDTO alunosCreateUpdateDTO) {
-        AlunosEntity aluno = alunosRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-        aluno.setName(alunosCreateUpdateDTO.getName());
-        aluno.setMatricula(alunosCreateUpdateDTO.getMatricula());
-        aluno.setTurma(alunosCreateUpdateDTO.getTurma());
-
-        AlunosEntity savedAluno = alunosRepository.save(aluno);
-        return new AlunosDTO(savedAluno);
+    public AlunosDTO update(int matricula, AlunosCreateUpdateDTO alunosCreateUpdateDTO) {
+        AlunosEntity aluno = alunosRepository.findByMatricula(matricula);
+        if (aluno == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            aluno.setNome(alunosCreateUpdateDTO.getNome());
+            aluno.setTurma(alunosCreateUpdateDTO.getTurma());
+    
+            AlunosEntity savedAluno = alunosRepository.save(aluno);
+            return new AlunosDTO(savedAluno);
+        }
     }
 
     @Override
-    public void delete(int id) {
-        AlunosEntity entity = alunosRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        alunosRepository.delete(entity);
+    public void delete(int matricula) {
+        AlunosEntity aluno = alunosRepository.findByMatricula(matricula);
+        if (aluno == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            alunosRepository.delete(aluno);
+        }
     }
 
 }

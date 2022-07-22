@@ -1,5 +1,7 @@
 package br.com.fiap.sigint.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,8 +11,13 @@ public interface CartaoRepository extends JpaRepository<CartaoEntity, Integer> {
 
     //@Query("select c from CARTAO c where c.card_number = :card_number")
     @Query(
-        value = "SELECT * FROM CARTAO c WHERE c.card_number = ?1", 
+        value = "SELECT * FROM CARTAO c WHERE c.cartao = ?1", 
         nativeQuery = true)
-    public CartaoEntity findByCardNumber(Long cardNumber);
+    public CartaoEntity findByCartao(Long cartao);
+
+    @Query(
+        value = "SELECT * FROM CARTAO", 
+        nativeQuery = true)
+    public List<CartaoEntity> findByAll();
 
 }
