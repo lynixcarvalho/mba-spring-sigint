@@ -12,11 +12,11 @@ SiGInt é um sistema para gerenciamento e integração...
 
 ## 🛠️ Tecnologias utilizadas
 
-- \<Banco de dados a definir\>
 - Docker
 - Git
 - Gradle
 - Java
+- MySQL
 - REST
 - Spring
 
