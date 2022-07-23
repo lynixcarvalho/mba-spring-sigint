@@ -1,28 +1,30 @@
 package br.com.fiap.sigint.dto;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
-import br.com.fiap.sigint.entity.CartaoEntity;
 import br.com.fiap.sigint.entity.TransacoesEntity;
 
 public class TransacoesDTO {
 
     private int id;
     private BigDecimal valor;
-    private CartaoEntity cartao;
+    private Date data;
 
     public TransacoesDTO() {
     }
 
 
-    public TransacoesDTO(int id, BigDecimal valor) {
+    public TransacoesDTO(int id, BigDecimal valor, Date data) {
         this.id = id;
         this.valor = valor;
+        this.data = data;
     }
 
     public TransacoesDTO(TransacoesEntity entity){
+        this.id = entity.getId();
         this.valor = entity.getValor();
-        this.cartao = entity.getCartao();
+        this.data = entity.getCreatedDate();
     }
 
 
@@ -45,14 +47,13 @@ public class TransacoesDTO {
         this.valor = valor;
     }
 
-    public CartaoEntity getCartao() {
-        return cartao;
+    public Date getData() {
+        return data;
     }
 
 
-    public void setCartao(CartaoEntity cartao) {
-        this.cartao = cartao;
+    public void setData(Date data) {
+        this.data = data;
     }
-    
     
 }

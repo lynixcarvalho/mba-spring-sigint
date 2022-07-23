@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import br.com.fiap.sigint.dto.CartaoAlunoDTO;
 import br.com.fiap.sigint.dto.CartaoCreateUpdateDTO;
 import br.com.fiap.sigint.dto.CartaoDTO;
 import br.com.fiap.sigint.service.CartaoService;
@@ -25,7 +26,7 @@ public class CartaoController {
     }
 
     @GetMapping("cartao/{cartao}")
-    public CartaoDTO getByCardNumber(@PathVariable Long cartao) {
+    public CartaoAlunoDTO getByCardNumber(@PathVariable Long cartao) {
         return cartaoService.findByCartao(cartao);
     }
 

@@ -8,7 +8,6 @@ import br.com.fiap.sigint.entity.AlunosEntity;
 public class AlunosDTO {
     
     private int matricula;
-
     private String nome;
     private String turma;
     private List<CartaoAlunoDTO> cartao;

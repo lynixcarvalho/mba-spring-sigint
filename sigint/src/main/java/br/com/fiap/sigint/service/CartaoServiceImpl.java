@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.com.fiap.sigint.dto.CartaoAlunoDTO;
 import br.com.fiap.sigint.dto.CartaoCreateUpdateDTO;
 import br.com.fiap.sigint.dto.CartaoDTO;
 import br.com.fiap.sigint.entity.AlunosEntity;
@@ -36,12 +37,12 @@ public class CartaoServiceImpl implements CartaoService {
     }
 
     @Override
-    public CartaoDTO findByCartao(Long cartao) {
+    public CartaoAlunoDTO findByCartao(Long cartao) {
         CartaoEntity entity = cartaoRepository.findByCartao(cartao);
         if (entity == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
-            return new CartaoDTO(entity);
+            return new CartaoAlunoDTO(entity);
         }
     }
 

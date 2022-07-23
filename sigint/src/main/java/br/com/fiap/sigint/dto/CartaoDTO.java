@@ -3,7 +3,6 @@ package br.com.fiap.sigint.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import br.com.fiap.sigint.entity.AlunosEntity;
 import br.com.fiap.sigint.entity.CartaoEntity;
 
 public class CartaoDTO {
@@ -13,8 +12,6 @@ public class CartaoDTO {
     private String senha;
     private Date cancelDate;
     private Date expiredDate;
-    private String nome;
-    private int matricula;
 
     public CartaoDTO() {
     }
@@ -33,8 +30,6 @@ public class CartaoDTO {
         this.senha = entity.getSenha();
         this.cancelDate = entity.getCancelDate();
         this.expiredDate = entity.getExpiredDate();
-        this.nome = entity.getAlunos().getNome();
-        this.matricula = entity.getAlunos().getMatricula();
     }
 
     public Long getCartao() {
@@ -75,21 +70,5 @@ public class CartaoDTO {
 
     public void setExpiredDate(Date expiredDate) {
         this.expiredDate = expiredDate;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
     }
 }

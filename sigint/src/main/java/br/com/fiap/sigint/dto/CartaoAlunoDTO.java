@@ -12,6 +12,8 @@ public class CartaoAlunoDTO {
     private String senha;
     private Date cancelDate;
     private Date expiredDate;
+    private String nome;
+    private int matricula;
 
     public CartaoAlunoDTO() {
     }
@@ -30,6 +32,8 @@ public class CartaoAlunoDTO {
         this.senha = entity.getSenha();
         this.cancelDate = entity.getCancelDate();
         this.expiredDate = entity.getExpiredDate();
+        this.nome = entity.getAlunos().getNome();
+        this.matricula = entity.getAlunos().getMatricula();
     }
 
     public Long getCartao() {
@@ -70,5 +74,21 @@ public class CartaoAlunoDTO {
 
     public void setExpiredDate(Date expiredDate) {
         this.expiredDate = expiredDate;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
     }
 }

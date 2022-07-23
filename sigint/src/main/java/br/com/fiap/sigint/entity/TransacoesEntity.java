@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.boot.actuate.audit.listener.AuditListener;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "transacoes")
@@ -23,6 +24,7 @@ public class TransacoesEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private int id;
 
     @Column
@@ -32,7 +34,8 @@ public class TransacoesEntity implements Serializable{
     @JoinColumn(name = "cartao_id")
     private CartaoEntity cartao;
 
-    @Column(nullable = false, updatable = false)
+    @Column()
+    @CreatedDate
     private Date createdDate;
 
     public int getId() {
@@ -66,6 +69,5 @@ public class TransacoesEntity implements Serializable{
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
-
         
 }

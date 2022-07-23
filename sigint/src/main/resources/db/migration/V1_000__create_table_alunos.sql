@@ -7,7 +7,7 @@ CREATE TABLE alunos (
     PRIMARY KEY (matricula)
 );
 CREATE TABLE cartao (
-    cartao BIGINT NOT NULL AUTO_INCREMENT,
+    cartao BIGINT NOT NULL,
     limite DECIMAL(19, 2),
     senha VARCHAR(200),
     created_date TIMESTAMP NOT NULL,
