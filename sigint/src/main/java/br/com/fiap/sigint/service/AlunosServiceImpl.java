@@ -58,7 +58,8 @@ public class AlunosServiceImpl implements AlunosService {
     @Override
     public AlunosDTO create(AlunosCreateUpdateDTO alunosCreateUpdateDTO) {
         AlunosEntity aluno = new AlunosEntity();
-
+        
+        aluno.setMatricula(alunosCreateUpdateDTO.getMatricula());
         aluno.setNome(alunosCreateUpdateDTO.getNome());
         aluno.setTurma(alunosCreateUpdateDTO.getTurma());
 

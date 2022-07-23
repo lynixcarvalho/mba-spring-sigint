@@ -38,14 +38,14 @@ public class CartaoEntity implements Serializable{
     @Column(nullable = false, updatable = false)
     @CreatedDate
     private Date createdDate;
-    
-    @Column(nullable = true, updatable = false)
-    private Date cancelDate;
 
     @Column(nullable = false, updatable = false)
     private Date expiredDate;
 
-    @ManyToOne()
+    @Column(nullable = true, updatable = false)
+    private Date cancelDate;
+
+    @ManyToOne
     @JoinColumn(name = "alunos_id")
     private AlunosEntity alunos;
 

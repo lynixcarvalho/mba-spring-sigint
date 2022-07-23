@@ -46,6 +46,7 @@ public class TransacoesServiceImpl implements TransacoesService {
         TransacoesEntity transacao = new TransacoesEntity();
         transacao.setValor(transacoesCreateUpdateDTO.getValor());
         transacao.setCartao(cartao);
+        transacao.setCreatedDate(transacoesCreateUpdateDTO.getData());
 
         TransacoesEntity savedTransacao = transacoesRepository.save(transacao);
 

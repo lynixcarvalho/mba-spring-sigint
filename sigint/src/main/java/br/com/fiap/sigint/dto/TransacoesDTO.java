@@ -15,10 +15,8 @@ public class TransacoesDTO {
     }
 
 
-    public TransacoesDTO(int id, BigDecimal valor, Date data) {
-        this.id = id;
+    public TransacoesDTO(BigDecimal valor) {
         this.valor = valor;
-        this.data = data;
     }
 
     public TransacoesDTO(TransacoesEntity entity){

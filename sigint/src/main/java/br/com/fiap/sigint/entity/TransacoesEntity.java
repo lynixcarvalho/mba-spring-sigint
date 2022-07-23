@@ -34,7 +34,7 @@ public class TransacoesEntity implements Serializable{
     @JoinColumn(name = "cartao_id")
     private CartaoEntity cartao;
 
-    @Column()
+    @Column(nullable = false, updatable = false)
     @CreatedDate
     private Date createdDate;
 

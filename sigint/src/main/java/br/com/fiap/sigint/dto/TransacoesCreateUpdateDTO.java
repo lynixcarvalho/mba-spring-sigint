@@ -1,24 +1,31 @@
 package br.com.fiap.sigint.dto;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class TransacoesCreateUpdateDTO {
     
-    private BigDecimal valor;
-    private Long cartao;
-
+    private BigDecimal valorOperacao;
+    private Long numeroCartao;
+    
     public BigDecimal getValor() {
-        return valor;
+        return valorOperacao;
     }
     public void setValor(BigDecimal valor) {
-        this.valor = valor;
+        this.valorOperacao = valor;
     }
-
     public Long getCartao() {
-        return cartao;
+        return numeroCartao;
     }
     public void setCartao(Long cartao) {
-        this.cartao = cartao;
+        this.numeroCartao = cartao;
+    }
+    public Date getData() {
+        Date dt = new Date();
+        Timestamp ts = new Timestamp(dt.getTime());
+        Date dataOperacao = ts;
+        return dataOperacao;
     }
             
 }

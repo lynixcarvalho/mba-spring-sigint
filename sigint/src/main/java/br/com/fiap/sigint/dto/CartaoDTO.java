@@ -10,26 +10,23 @@ public class CartaoDTO {
     private Long cartao;
     private BigDecimal limite;
     private String senha;
-    private Date cancelDate;
-    private Date expiredDate;
+    private Date emissao;
+    private Date validade;
 
     public CartaoDTO() {
     }
 
-    public CartaoDTO(Long cartao, BigDecimal limite, String senha, Date cancelDate, Date expiredDate) {
-        this.cartao = cartao;
+    public CartaoDTO(BigDecimal limite, String senha) {
         this.limite = limite;
         this.senha = senha;
-        this.cancelDate = cancelDate;
-        this.expiredDate = expiredDate;
     }
 
     public CartaoDTO(CartaoEntity entity) {
         this.cartao = entity.getCartao();
         this.limite = entity.getLimite();
         this.senha = entity.getSenha();
-        this.cancelDate = entity.getCancelDate();
-        this.expiredDate = entity.getExpiredDate();
+        this.emissao = entity.getCreatedDate();
+        this.validade = entity.getExpiredDate();
     }
 
     public Long getCartao() {
@@ -56,19 +53,19 @@ public class CartaoDTO {
         this.senha = senha;
     }
 
-    public Date getCancelDate() {
-        return cancelDate;
+    public Date getEmissao() {
+        return emissao;
     }
 
-    public void setCancelDate(Date cancelDate) {
-        this.cancelDate = cancelDate;
+    public void setEmissao(Date emissao) {
+        this.emissao = emissao;
     }
 
-    public Date getExpiredDate() {
-        return expiredDate;
+    public Date getValidade() {
+        return validade;
     }
 
-    public void setExpiredDate(Date expiredDate) {
-        this.expiredDate = expiredDate;
+    public void setValidade(Date validade) {
+        this.validade = validade;
     }
 }

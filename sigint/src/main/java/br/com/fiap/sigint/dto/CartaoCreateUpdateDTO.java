@@ -9,26 +9,26 @@ import org.apache.commons.lang3.time.DateUtils;
 
 public class CartaoCreateUpdateDTO {
     
-    private Long cartao;
-    private BigDecimal limite;
+    // private Long cartao;
+    private BigDecimal limiteCartao;
     private String senha;
-    private Date expiredDate;
-    private int matricula;
+    // private Date expiredDate;
+    private int matriculaAluno;
 
     public Long getCartao() {
         Random rand = new Random();
         int prefix = 99;
         long x = (long)(rand.nextDouble()*100000000000000L);
         String s = String.valueOf(prefix) + String.format("%014d", x);
-        cartao = Long.valueOf(s);
+        Long cartao = Long.valueOf(s);
         return cartao;
     }
 
     public BigDecimal getLimite() {
-        return limite;
+        return limiteCartao;
     }
     public void setLimite(BigDecimal limite) {
-        this.limite = limite;
+        this.limiteCartao = limite;
     }
     public String getSenha() {
         return senha;
@@ -40,14 +40,14 @@ public class CartaoCreateUpdateDTO {
         Date data = new Date();
         data = DateUtils.addYears(data, 3);
         Timestamp ts = new Timestamp(data.getTime());
-        expiredDate = ts;
+        Date expiredDate = ts;
         return expiredDate;
     }    
 
     public int getMatricula() {
-        return matricula;
+        return matriculaAluno;
     }
     public void setMatricula(int matricula) {
-        this.matricula = matricula;
+        this.matriculaAluno = matricula;
     }
 }
