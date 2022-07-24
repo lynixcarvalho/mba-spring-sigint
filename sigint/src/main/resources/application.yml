@@ -3,14 +3,13 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:file:../db/sigint;DB_CLOSE_ON_EXIT=FALSE
-    # url: jdbc:mysql://0.0.0.0:3306/bancofiap?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/bancofiap
     username: root
-    password: fiap-mba
-    # driver-class-nam: com.mysql.cj.jdbc.Driver
+    password: 12106153
+    driver-class-nam: com.mysql.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
   h2:
     console:
       enabled: true

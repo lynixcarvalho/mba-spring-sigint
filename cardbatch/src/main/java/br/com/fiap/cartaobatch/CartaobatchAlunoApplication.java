@@ -1,7 +1,5 @@
 package br.com.fiap.cartaobatch;
 
-import java.io.File;
-import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
@@ -50,7 +48,7 @@ public class CartaobatchAlunoApplication {
 				Aluno aluno = new Aluno();
 			  	String nome = line.substring(0, 40); 
 			  	String matricula = line.substring(42, 48);
-				String turma = line.substring(51, 59);
+				String turma = line.substring(51, 55);
 			  	aluno.setNome(nome);
 			  	aluno.setMatricula(Integer.parseInt(matricula)); 
 				aluno.setTurma(turma);
@@ -71,7 +69,7 @@ public class CartaobatchAlunoApplication {
 	@Bean
 	public ItemWriter<Aluno> itemWriter(DataSource dataSource) {
 		return new JdbcBatchItemWriterBuilder<Aluno>()
-				.sql("insert into alunos(matricula,nome,turma,created_data,modified_date) values (:matricula,:nome,:turma,current_timestamp,current_timestamp)")
+				.sql("insert into alunos(matricula, nome, turma, created_date , modified_date) values (:matricula, :nome, :turma, current_timestamp, current_timestamp)")
 				.dataSource(dataSource)
 				.beanMapped()
 				.build();
