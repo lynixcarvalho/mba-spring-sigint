@@ -9,4 +9,4 @@ spring:
     driver-class-nam: com.mysql.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate

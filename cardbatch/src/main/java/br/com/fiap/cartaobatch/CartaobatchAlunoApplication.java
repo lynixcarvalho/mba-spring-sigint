@@ -47,8 +47,8 @@ public class CartaobatchAlunoApplication {
 			public Aluno mapLine(String line, int lineNumber) throws Exception {
 				Aluno aluno = new Aluno();
 			  	String nome = line.substring(0, 40); 
-			  	String matricula = line.substring(42, 48);
-				String turma = line.substring(51, 55);
+			  	String matricula = line.substring(41, 48);
+				String turma = line.substring(49, 55);
 			  	aluno.setNome(nome);
 			  	aluno.setMatricula(Integer.parseInt(matricula)); 
 				aluno.setTurma(turma);
