@@ -25,12 +25,12 @@ public class AlunosController {
         return alunosService.listAll(nome);
     }
 
-    @GetMapping("matricula/{matricula}")
+    @GetMapping("{matricula}")
     public AlunosDTO getByMatricula(@PathVariable int matricula) {
         return alunosService.findByMatricula(matricula);
     }
 
-    @GetMapping("turma/{turma}")
+    @GetMapping("{matricula}/turma/{turma}")
     public List<AlunosDTO> getByTurma(@PathVariable String turma) {
         return alunosService.findByTurma(turma);
     }
@@ -42,14 +42,14 @@ public class AlunosController {
         return alunosService.create(createUpdateAlunosDTO);
     }
 
-    @PutMapping("matricula/{matricula}")
+    @PutMapping("{matricula}")
     public AlunosDTO update(
             @RequestBody AlunosCreateUpdateDTO createUpdateAlunosDTO,
             @PathVariable int matricula) {
         return alunosService.update(matricula, createUpdateAlunosDTO);
     }
 
-    @DeleteMapping("matricula/{matricula}")
+    @DeleteMapping("{matricula}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int matricula) {
         alunosService.delete(matricula);

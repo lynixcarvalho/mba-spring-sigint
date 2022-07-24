@@ -25,7 +25,7 @@ public class CartaoController {
         return cartaoService.listAll();
     }
 
-    @GetMapping("cartao/{cartao}")
+    @GetMapping("{cartao}")
     public CartaoAlunoDTO getByCardNumber(@PathVariable Long cartao) {
         return cartaoService.findByCartao(cartao);
     }
@@ -37,7 +37,7 @@ public class CartaoController {
         return cartaoService.create(cartaoCreateUpdateDTO);
     }
 
-    @DeleteMapping("cartao/{cartao}")
+    @DeleteMapping("{cartao}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long cartao) {
         cartaoService.delete(cartao);
