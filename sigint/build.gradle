@@ -35,8 +35,8 @@ dependencies {
 
 	// Security
 		// Implements authorization in Spring Boot
-		implementation 'org.springframework.boot:spring-boot-starter-security'
-		implementation 'io.jsonwebtoken:jjwt:0.9.1'	
+		// implementation 'org.springframework.boot:spring-boot-starter-security'
+		// implementation 'io.jsonwebtoken:jjwt:0.9.1'
 	
 	// Swagger
 		// Automated JSON API documentation for API's built with Spring
