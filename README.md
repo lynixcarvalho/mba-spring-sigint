@@ -4,30 +4,52 @@
 
 ## 🎯 Objetivo
 
-SiGInt é um sistema para gerenciamento e integração...
-
-
-## 📱 Print de telas da aplicação
+SiGInt é um sistema para gerenciamento e integração que possibilita o cadastro de alunos de uma instituição, gerar cartões para os mesmos e integrar com autorizadora externa transações nesses respectivos cartões. Além disso, disponibiliza extrato das transações feitas nos cartões.
 
 
 ## 🛠️ Tecnologias utilizadas
 
-- Docker
-- Git
+- Docker: devido a facilidade de subir um banco de dados já configurado e pronto para integrar com o Spring. Além disso, a ideia é portar toda aplicação para microsserviços utilizando o docker
+- Git: ferramenta escolhida para controle de versão e integração do código
 - Gradle
 - Java
-- MySQL
+- MySQL: Escolhido por ser um banco de dados relacional, com estrutura específica e que apresenta os dados em tabela. No entanto, a principal razão é a possibilidade de criar relações entre as entidades.
 - REST
 - Spring
 
-## ⚙️ Como abrir e rodar o projeto
+### Pré requisitos:
+- Docker com a ferramenta docker-compose instalada
+- Git
+- Java 17
+
+### Passo a passo para a execução:
 1. Clonar projeto do GitHub:
 ~~~bash
-$ git clone https://github.com/lynixcarvalho/mba-spring-final-project.git
+$ git clone git@github.com:lynixcarvalho/mba-spring-sigint.git
 $ cd mba-spring-final-project
 ~~~
-2. Abrir o projeto na sua IDE de preferência (Eclipse, IntelliJ, Vscode...)
-3. Com o o projeto aberto execute o run no arquivo src/main/java/br/com/fiap/sigint/SigintApplication.java
+2. Subir o banco de dados utilizando o docker-compose:
+~~~bash
+$ docker-compose up -d
+~~~
+3. Acessar o diretório filebatch e executar o bootRun.
+~~~bash
+$ cd filebatch
+$ ./gradlew bootRun
+~~~
+4. Voltar para a pasta raiz do projeto, acessar o diretório sigint e executar o bootRun:
+~~~bash
+$ cd ../sigint
+$ ./gradlew bootRun
+~~~
+5. Abrir uma nova janela ou aba do terminal, acessar a pasta raiz do projeto, acessar o diretório cardbatch e executar o bootRun:
+~~~bash
+$ cd cardbatch
+$ ./gradlew bootRun
+~~~
+
+Os passos 3 e 5 acima servem para popular o banco de dados com os dados dos alunos fornercidos anteriormente. O passo 4 sobe a aplicação com o swagger, endpoints e a criação das tabelas no banco de dados.
+
 
 ## 👨🏽‍💻👩🏽‍💻 Desenvolvedores 
 
