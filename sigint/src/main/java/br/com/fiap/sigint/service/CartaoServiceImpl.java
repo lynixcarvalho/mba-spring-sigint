@@ -27,12 +27,12 @@ public class CartaoServiceImpl implements CartaoService {
     }
 
     @Override
-    public List<CartaoDTO> listAll() {
+    public List<CartaoAlunoDTO> listAll() {
         List<CartaoEntity> cartaoList;
         cartaoList = cartaoRepository.findAll();
         return cartaoList
                 .stream()
-                .map(entity -> new CartaoDTO(entity))
+                .map(entity -> new CartaoAlunoDTO(entity))
                 .collect(Collectors.toList());
     }
 

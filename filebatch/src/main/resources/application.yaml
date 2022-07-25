@@ -5,4 +5,4 @@ inputfile:
   path: src/main/resources/lista_alunos.txt
 
 outputfile:
-  path: ../cardbatch/src/main/resources/clientes.txt
+  path: ../alunosbatch/src/main/resources/clientes.txt

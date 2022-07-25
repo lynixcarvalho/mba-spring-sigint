@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.com.fiap.sigint.dto.TransacoesCartaoDTO;
 import br.com.fiap.sigint.dto.TransacoesCreateUpdateDTO;
 import br.com.fiap.sigint.dto.TransacoesDTO;
 import br.com.fiap.sigint.entity.CartaoEntity;
@@ -26,17 +27,34 @@ public class TransacoesServiceImpl implements TransacoesService {
     }
 
     @Override
-    public List<TransacoesDTO> listAll() {
+    public List<TransacoesCartaoDTO> listAll() {
         List<TransacoesEntity> entityList;
         entityList = transacoesRepository.findAll();
-        return entityList.stream().map(entity -> new TransacoesDTO(entity)).collect(Collectors.toList());
+        return entityList
+                .stream()
+                .map(entity -> new TransacoesCartaoDTO(entity))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public TransacoesDTO findById(int id) {
+    public List<TransacoesCartaoDTO> findByCartao(Long cartao) {
+        List<TransacoesEntity> entity = transacoesRepository.findByCartao(cartao);
+        if (entity == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            return null;
+                    // entity
+                    // .stream()
+                    // .map(entity -> new TransacoesCartaoDTO(entity))
+                    // .collect(Collectors.toList());
+        }
+    }
+
+    @Override
+    public TransacoesCartaoDTO findById(int id) {
         TransacoesEntity entity = transacoesRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return new TransacoesDTO(entity);
+        return new TransacoesCartaoDTO(entity);
     }
 
     @Override

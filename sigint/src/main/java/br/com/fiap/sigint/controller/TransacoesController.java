@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fiap.sigint.dto.TransacoesCartaoDTO;
 import br.com.fiap.sigint.dto.TransacoesCreateUpdateDTO;
 import br.com.fiap.sigint.dto.TransacoesDTO;
 import br.com.fiap.sigint.service.TransacoesService;
@@ -27,13 +28,13 @@ public class TransacoesController {
     }
 
     @GetMapping
-    public List<TransacoesDTO> listTransacoes() {
+    public List<TransacoesCartaoDTO> listTransacoes() {
         return transacoesService.listAll();
         
     }
 
     @GetMapping("{id}")
-    public TransacoesDTO getById(@PathVariable int id) {
+    public TransacoesCartaoDTO getById(@PathVariable int id) {
         return transacoesService.findById(id);
     }
 

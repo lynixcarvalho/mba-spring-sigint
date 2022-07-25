@@ -9,7 +9,6 @@ public class CartaoAlunoDTO {
 
     private Long cartao;
     private BigDecimal limite;
-    private String senha;
     private Date cancelDate;
     private Date expiredDate;
     private String nome;
@@ -18,10 +17,9 @@ public class CartaoAlunoDTO {
     public CartaoAlunoDTO() {
     }
 
-    public CartaoAlunoDTO(Long cartao, BigDecimal limite, String senha, Date cancelDate, Date expiredDate) {
+    public CartaoAlunoDTO(Long cartao, BigDecimal limite, Date cancelDate, Date expiredDate) {
         this.cartao = cartao;
         this.limite = limite;
-        this.senha = senha;
         this.cancelDate = cancelDate;
         this.expiredDate = expiredDate;
     }
@@ -29,7 +27,6 @@ public class CartaoAlunoDTO {
     public CartaoAlunoDTO(CartaoEntity entity) {
         this.cartao = entity.getCartao();
         this.limite = entity.getLimite();
-        this.senha = entity.getSenha();
         this.cancelDate = entity.getCancelDate();
         this.expiredDate = entity.getExpiredDate();
         this.nome = entity.getAlunos().getNome();
@@ -50,14 +47,6 @@ public class CartaoAlunoDTO {
 
     public void setLimite(BigDecimal limite) {
         this.limite = limite;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public Date getCancelDate() {

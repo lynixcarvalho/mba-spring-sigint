@@ -21,7 +21,7 @@ public class CartaoController {
     }
 
     @GetMapping
-    public List<CartaoDTO> listCartoes() {
+    public List<CartaoAlunoDTO> listCartoes() {
         return cartaoService.listAll();
     }
 

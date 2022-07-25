@@ -41,7 +41,10 @@ public class AlunosServiceImpl implements AlunosService {
         if (alunos == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
-            return alunos.stream().map(entity -> new AlunosDTO(entity)).collect(Collectors.toList());
+            return alunos
+                    .stream()
+                    .map(entity -> new AlunosDTO(entity))
+                    .collect(Collectors.toList());
         }
     }
 

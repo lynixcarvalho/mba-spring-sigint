@@ -1,4 +1,12 @@
-package br.com.fiap.cartaobatch;
+package br.com.fiap.filebatch;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.nio.file.Paths;
+import java.util.logging.Logger;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -12,24 +20,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.nio.file.Paths;
-import java.util.logging.Logger;
-
 @SpringBootApplication
 @EnableBatchProcessing
-public class CartaobatchFileApplication {
+public class FileBatchApplication {
+    
+    Logger logger = Logger.getLogger(FileBatchApplication.class.getSimpleName());
+    public static void main(String[] args) {
+        SpringApplication.run(FileBatchApplication.class, args);
+    }
 
-	Logger logger = Logger.getLogger(CartaobatchFileApplication.class.getSimpleName());
-	public static void main(String[] args) {
-		SpringApplication.run(CartaobatchFileApplication.class, args);
-	}
-
-	@Bean
+    @Bean
 	public Tasklet tasklet(@Value("${inputfile.path}") String fileIPath ,
 	                       @Value("${outputfile.path}") String fileOPath) {
 		return (stepContribution, chunkContext) -> {
@@ -77,5 +77,6 @@ public class CartaobatchFileApplication {
 				.start(step)
 				.build();
 	}
+
 
 }

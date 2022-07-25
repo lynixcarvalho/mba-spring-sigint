@@ -32,6 +32,11 @@ dependencies {
 
 		// Database migration tool
 		implementation 'org.flywaydb:flyway-maven-plugin:8.5.12'
+
+	// Security
+		// Implements authorization in Spring Boot
+		implementation 'org.springframework.boot:spring-boot-starter-security'
+		implementation 'io.jsonwebtoken:jjwt:0.9.1'	
 	
 	// Swagger
 		// Automated JSON API documentation for API's built with Spring
