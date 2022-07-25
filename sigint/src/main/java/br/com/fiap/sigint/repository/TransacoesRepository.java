@@ -10,7 +10,7 @@ import br.com.fiap.sigint.entity.TransacoesEntity;
 public interface TransacoesRepository extends JpaRepository<TransacoesEntity, Integer>{
     
     @Query(
-        value = "SELECT * FROM TRANSACOES t WHERE t.cartao = ?1", 
+        value = "SELECT * FROM TRANSACOES t WHERE t.cartao_id = ?1", 
         nativeQuery = true)
     public List<TransacoesEntity> findByCartao(Long cartao); 
 

@@ -38,15 +38,14 @@ public class TransacoesServiceImpl implements TransacoesService {
 
     @Override
     public List<TransacoesCartaoDTO> findByCartao(Long cartao) {
-        List<TransacoesEntity> entity = transacoesRepository.findByCartao(cartao);
-        if (entity == null) {
+        List<TransacoesEntity> transacoes = transacoesRepository.findByCartao(cartao);
+        if (transacoes == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {
-            return null;
-                    // entity
-                    // .stream()
-                    // .map(entity -> new TransacoesCartaoDTO(entity))
-                    // .collect(Collectors.toList());
+            return transacoes
+                    .stream()
+                    .map(entity -> new TransacoesCartaoDTO(entity))
+                    .collect(Collectors.toList());
         }
     }
 
